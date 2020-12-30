@@ -15,7 +15,7 @@ def slice_per_book(whole_bible_json, output_folder):
     with open(whole_bible_json) as json_file:
         bible = json.load(json_file)
         for book in bible.keys():
-            write_to_file(output_folder + "/" + book + ".txt", str(bible[book]))
+            write_to_file(output_folder + "/" + book + ".json", json.dumps(bible[book]))
 
 
 
