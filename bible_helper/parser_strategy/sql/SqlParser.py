@@ -23,7 +23,6 @@ class SqlParser(FileParser):
         bible_entries = [BibleEntry(*row) for row in rows]
 
         content = {}
-        # Example: Print each entry's verse
         for entry in bible_entries:
             if entry.book not in content:
                 content[entry.book] = {}

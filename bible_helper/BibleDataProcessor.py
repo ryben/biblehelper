@@ -5,9 +5,8 @@ from bible_helper.parser_strategy.FileParser import FileParser
 
 
 def write_to_file(filename, content):
-    f = open(filename, "w", encoding='utf-8')
-    f.write(content)
-    f.close()
+    with open(filename, "w", encoding='utf-8') as f:
+        f.write(content)
 
 
 class BibleDataProcessor:
@@ -21,9 +20,9 @@ class BibleDataProcessor:
         self.slice_per_book(bible_json, output_folder)
 
     # Read Whole Bible JSON then segregate per book
-    def slice_per_book(self, bible, output_folder):
-        if not os.path.exists(output_folder):
-            os.makedirs(output_folder)
+    def slice_per_book(self, bible_json, output_folder):
+        os.makedirs(output_folder, exist_ok=True)
 
-        for book in bible.keys():
-            write_to_file(f"{output_folder}/{book}.json", json.dumps(bible[book], separators=(',', ':')))
+        for book in bible_json.keys():
+            output_filepath = os.path.join(output_folder, f"{book}.json")
+            write_to_file(output_filepath, json.dumps(bible_json[book], separators=(',', ':')))
