@@ -10,6 +10,5 @@ class BibleEntry:
 
 # Define a class to represent a row from the 'bible' table
 class BookEntry:
-    def __init__(self, name, language_id):
+    def __init__(self, name):
         self.name = name
-        self.language_id = language_id

@@ -1,12 +1,8 @@
 import json
 import os
 
+from bible_helper import Util
 from bible_helper.parser_strategy.FileParser import FileParser
-
-
-def write_to_file(filename, content):
-    with open(filename, "w", encoding='utf-8') as f:
-        f.write(content)
 
 
 class BibleDataProcessor:
@@ -25,4 +21,4 @@ class BibleDataProcessor:
 
         for book in bible_json.keys():
             output_filepath = os.path.join(output_folder, f"{book}.json")
-            write_to_file(output_filepath, json.dumps(bible_json[book], separators=(',', ':')))
+            Util.write_to_file(output_filepath, json.dumps(bible_json[book], separators=(',', ':')))

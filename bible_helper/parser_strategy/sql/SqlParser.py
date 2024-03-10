@@ -35,25 +35,3 @@ class SqlParser(FileParser):
         conn.close()
 
         return content
-
-    def extract_books_to_json(self):
-        # Connect to your SQLite database
-        conn = sqlite3.connect('bible.sqlite')  # Replace 'your_database.db' with your database file
-        cursor = conn.cursor()
-
-        # Query to select the top 5 rows, sorted by a column (e.g., 'verse')
-        cursor.execute("SELECT id, name FROM BOOK WHERE language_id = 2")
-        rows = cursor.fetchall()
-
-        # Convert each row into a BibleEntry object
-        book_entries = [BookEntry(*row) for row in rows]
-
-        books_list = []
-        # Example: Print each entry's verse
-        for entry in book_entries:
-            books_list.append(entry.name)
-
-        # Close the connection
-        conn.close()
-
-        return books_list
